@@ -8,4 +8,11 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Component\" />
+    <Folder Include="ConcreteComponent\" />
+    <Folder Include="Decorator\" />
+    <Folder Include="ConcreteDecorator\" />
+  </ItemGroup>
+
 </Project>
