@@ -2,16 +2,16 @@
 
 namespace decorator_pattern.Decorator
 {
-    public abstract class EncryptionDecorator : IScanner
+    public abstract class ScannerDecorator : Scanner
     {
-        protected IScanner scanner;
+        protected Scanner scanner;
 
-        protected EncryptionDecorator(IScanner scanner)
+        protected ScannerDecorator(Scanner scanner)
         {
             this.scanner = scanner;
         }
 
-        public virtual IScanner GetDocumentInformation()
+        public override Scanner GetDocumentInformation()
         {
             return scanner.GetDocumentInformation();
         }

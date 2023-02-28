@@ -2,13 +2,8 @@
 
 namespace decorator_pattern.ConcreteComponent
 {
-    public class Arh : IScanner
+    public class Arh : Scanner
     {
-        public string FrontImage { get; set; }
-        public string BackImage { get; set; }
-        public string FaceImageChip { get; set; }
-        public string FaceImageViz { get; set; }
-
         public Arh(string frontImage, string backImage, string faceImageChip, string faceImageViz)
         {
             FrontImage = frontImage;
@@ -17,7 +12,7 @@ namespace decorator_pattern.ConcreteComponent
             FaceImageViz = faceImageViz;
         }
 
-        public IScanner GetDocumentInformation()
+        public override Scanner GetDocumentInformation()
         {
             return this;
         }
