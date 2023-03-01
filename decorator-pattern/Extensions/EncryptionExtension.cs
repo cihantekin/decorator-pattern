@@ -1,6 +1,45 @@
-﻿namespace decorator_pattern.Extensions
+﻿using System.Security.Cryptography;
+using System.Text;
+
+namespace decorator_pattern.Extensions
 {
     public static class EncryptionExtension
     {
+        public static string EncryptStringContent(this string content, string key)
+        {
+            byte[] iv = new byte[16];
+            byte[] array;
+
+            using var aes = Aes.Create();
+            aes.Key = Encoding.UTF8.GetBytes(key);
+            aes.IV = iv;
+
+            ICryptoTransform encryptor = aes.CreateEncryptor(aes.Key, aes.IV);
+
+            using MemoryStream memoryStream = new();
+            using CryptoStream cryptoStream = new(memoryStream, encryptor, CryptoStreamMode.Write);
+            using (StreamWriter streamWriter = new(cryptoStream))
+                streamWriter.Write(content);
+
+            array = memoryStream.ToArray();
+
+            return Convert.ToBase64String(array);
+        }
+
+        public static string DecryptStringContent(this string cipherText, string key)
+        {
+            byte[] iv = new byte[16];
+            byte[] buffer = Convert.FromBase64String(cipherText);
+
+            using Aes aes = Aes.Create();
+            aes.Key = Encoding.UTF8.GetBytes(key);
+            aes.IV = iv;
+            ICryptoTransform decryptor = aes.CreateDecryptor(aes.Key, aes.IV);
+
+            using MemoryStream memoryStream = new(buffer);
+            using CryptoStream cryptoStream = new(memoryStream, decryptor, CryptoStreamMode.Read);
+            using StreamReader streamReader = new(cryptoStream);
+            return streamReader.ReadToEnd();
+        }
     }
 }
