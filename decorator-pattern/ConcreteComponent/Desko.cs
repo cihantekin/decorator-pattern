@@ -14,7 +14,7 @@ namespace decorator_pattern.ConcreteComponent
 
         public override Scanner GetDocumentInformation()
         {
-            throw new NotImplementedException();
+            return this;
         }
     }
 }
