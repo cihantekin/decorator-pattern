@@ -21,12 +21,12 @@ namespace decorator_pattern.ConcreteDecorator
             return scannerInfo;
         }
 
-        private void EncryptStringFields(Scanner scannerInfo)
+        private static void EncryptStringFields(Scanner scannerInfo)
         {
-            scannerInfo.FaceImageChip = FaceImageChip.EncryptStringContent(EncKey);
-            scannerInfo.FaceImageViz = FaceImageViz.EncryptStringContent(EncKey);
-            scannerInfo.FrontImage = FrontImage.EncryptStringContent(EncKey);
-            scannerInfo.BackImage = BackImage.EncryptStringContent(EncKey);
+            scannerInfo.FaceImageChip = scannerInfo.FaceImageChip.EncryptStringContent(EncKey);
+            scannerInfo.FaceImageViz = scannerInfo.FaceImageViz.EncryptStringContent(EncKey);
+            scannerInfo.FrontImage = scannerInfo.FrontImage.EncryptStringContent(EncKey);
+            scannerInfo.BackImage = scannerInfo.BackImage.EncryptStringContent(EncKey);
         }
     }
 }
