@@ -2,10 +2,10 @@
 {
     public abstract class Scanner
     {
-        public string FrontImage { get; set; }
-        public string BackImage { get; set; }
-        public string FaceImageChip { get; set; }
-        public string FaceImageViz { get; set; }
+        public string FrontImage { get; set; } = string.Empty;
+        public string BackImage { get; set; } = string.Empty;
+        public string FaceImageChip { get; set; } = string.Empty;
+        public string FaceImageViz { get; set; } = string.Empty;
         public abstract Scanner GetDocumentInformation();
     }
 }
